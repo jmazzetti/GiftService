@@ -1,9 +1,11 @@
-FROM Java8
-MAINTAINER Jose Mazzetti "<jmazzetti@gmail.com>"
+FROM java:8
 
-# Example on how VERSION build-arg can be used
+COPY /target/GiftService-1.0-SNAPSHOT.jar /home/ec2-user/releases/giftservices/giftservices.jar
+COPY /src/main/resources/application.yml  /home/ec2-user/releases/giftservices/application.yml
 
-EXPOSE 8080
+EXPOSE 9797
 
-CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/spring-boot-app.jar"]
+RUN chmod -R -776 /home/ec2-user/releases/giftservices/
+RUN chmod -R -776 /home/ec2-user/releases/giftservices/giftservices.jar
 
+ENTRYPOINT ["java", "-Xmx512m", "-Xms256m", "-jar", "/home/ec2-user/releases/giftservices/giftservices.jar”, ”—spring.config.location=/home/ec2-user/releases/giftservices/"]
