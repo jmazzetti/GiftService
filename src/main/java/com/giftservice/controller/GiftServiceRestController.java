@@ -4,12 +4,9 @@ import com.giftservice.exception.SimpleRestException;
 import com.giftservice.protocol.ResponseObject;
 import com.giftservice.protocol.request.*;
 import com.giftservice.protocol.response.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +17,6 @@ import java.util.Map;
 @RestController
 public class GiftServiceRestController {
 
-    private static Logger log = LogManager.getLogger(GiftServiceRestController.class);
     private static final String LOGIN = "/login";
     private static final String QUESTION = "/question";
     private static final String ANSWER = "/answer";
@@ -57,13 +53,21 @@ public class GiftServiceRestController {
         ResponseObject response = null;
         Map<String, Object> parameters = new HashMap<String, Object>();
         QuestionResponse questionResponse = new QuestionResponse();
-        Question question = new Question();
-        question.setAge(30);
-        question.setMoney(new BigDecimal(100L));
-        question.setPurpose("Birthday");
-        question.setSex("MALE");
+        QuestionValue value1 = new QuestionValue("1-99");
+        QuestionValue value2 = new QuestionValue("Male-Female");
+        QuestionValue value3 = new QuestionValue("Marriage-Birthday");
+        QuestionValue value4 = new QuestionValue("0-500");
+
+        Question question1 = new Question(1, "What is his/her age?", "personal", "slider", value1);
+        Question question2 = new Question(2, "Sex?", "personal", "slider", value2);
+        Question question3 = new Question(3, "Purpose?", "personal", "slider", value3);
+        Question question4 = new Question(4, "Price Range?", "personal", "slider", value4);
+
         List<Question> listQuestions = new ArrayList<Question>();
-        listQuestions.add(question);
+        listQuestions.add(question1);
+        listQuestions.add(question2);
+        listQuestions.add(question3);
+        listQuestions.add(question4);
 
         questionResponse.setQuestions(listQuestions);
         parameters.put("response", "SUCCESS");

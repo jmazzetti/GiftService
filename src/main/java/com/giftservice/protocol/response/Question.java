@@ -1,46 +1,65 @@
 package com.giftservice.protocol.response;
 
-import java.math.BigDecimal;
-
 /**
  * Created by josemazzetti on 25/01/2017.
  */
 public class Question {
 
-    private String sex;
-    private Integer age;
-    private String purpose;
-    private BigDecimal money;
 
-    public String getSex() {
-        return sex;
+    private Integer id;
+    private String label;
+    private String category;
+    private String input;
+    private QuestionValue values;
+
+    public Question(Integer id, String label, String category, String input, QuestionValue values) {
+        this.id = id;
+        this.label = label;
+        this.category = category;
+        this.input = input;
+        this.values = values;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getAge() {
-        return age;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public String getLabel() {
+        return label;
     }
 
-    public String getPurpose() {
-        return purpose;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
+    public String getCategory() {
+        return category;
     }
 
-    public BigDecimal getMoney() {
-        return money;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public void setMoney(BigDecimal money) {
-        this.money = money;
+    public String getInput() {
+        return input;
     }
+
+    public void setInput(String input) {
+        this.input = input;
+    }
+
+    public QuestionValue getValues() {
+        return values;
+    }
+
+    public void setValues(QuestionValue values) {
+        this.values = values;
+    }
+
 }
